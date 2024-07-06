@@ -23,8 +23,8 @@ function processSelection(e) {
   let text = getSelectedText();
 
   if ($.isNumeric(text) && [10, 13].includes(text.length)) {
-    if (text.length == 13) {  // Handle millisecond timestamps
-      text = text / 1000;
+    if (text.length == 10) {  // Handle millisecond timestamps
+      text = text + "000";
     }
     console.log("Epoch Converter found timestamp: " + text);
     const date = timestampToDate(text);
@@ -48,22 +48,22 @@ function getSelectedText() {
   return text;
 }
 
-function timestampToDate(ts) {
-  ts = ts.length === 13 ? parseInt(ts) : ts * 1000;
+function timestampToDate(text) {
+  ts = parseInt(text)
   return new Date(ts);
 }
 
 function getLocalString(date) {
   tz = date.getTimezoneOffset()
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())} GMT${tz < 0 ? '+' : '-'}${pad(Math.floor(tz / 60))}:${pad(tz % 60)}`
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}.${pad(date.getMilliseconds(), 3)} GMT${tz < 0 ? '+' : '-'}${pad(Math.floor(tz / 60))}:${pad(tz % 60)}`
 }
 
 function getUTCString(date) {
-  return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())} GMT`
+  return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}.${pad(date.getMilliseconds(), 3)} GMT`
 }
 
-function pad(v) {
-  return v.toString().padStart(2, '0')
+function pad(v, length=2) {
+  return v.toString().padStart(length, '0')
 }
 
 function showBubble(e, localDateStr, utcDateStr) {
