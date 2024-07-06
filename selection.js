@@ -26,8 +26,13 @@ function processSelection(e) {
     if (text.length == 13) {  // Handle millisecond timestamps
       text = text / 1000;
     }
-    var date = timestampToDate(text);
-    showBubble(e, getLocalString(date), getUTCString(date));
+    console.log("Epoch Converter found timestamp: " + text);
+    const date = timestampToDate(text);
+    const localStr = getLocalString(date);
+    const utcStr = getUTCString(date);
+    console.log("Converted local timestamp: " + localStr);
+    console.log("Converted UTC timestamp: " + utcStr);
+    showBubble(e, localStr, utcStr);
   }
 }
 

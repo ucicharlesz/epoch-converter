@@ -1,8 +1,9 @@
 #ec-bubble {
-    background-color: lightgray;
+    background-color: navy;
+    border: 2px solid mediumblue;
     border-radius: 6px;
-    box-shadow: 0 0 20px 5px #888;
-    color: black;
+    box-shadow: 0 0 20px 5px #66f;
+    color: white;
     left: 0;
     padding: 7px;
     position: absolute;
@@ -13,8 +14,7 @@
 }
 
 #ec-bubble-text {
-    background-color: lightgray;
-    color: black;
+    background-color: navy;
     float: left;
     font-family: monospace;
     font-size: 10pt;

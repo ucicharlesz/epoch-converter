@@ -3,6 +3,7 @@
   "name": "Epoch Converter",
   "description": "Provides a popup showing a human readable date of a highlighted Unix timestamp.",
   "version": "1.1.2",
+  "version_name": "1.1.2 zeta",
   "icons": {
     "16": "icon.png",
     "48": "icon.png",
